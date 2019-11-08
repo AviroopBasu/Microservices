@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: employee-eureka-server
+  labels:
+    app: employee-eureka-server
+  namespace: md
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employee-eureka-server
+  template:
+    metadata:
+      labels:
+        app: employee-eureka-server
+    spec:
+      containers:
+      - name: employee-eureka-server-container1
+        image: employee-eureka-server-image
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: IfNotPresent #For local dev, use local docker repo

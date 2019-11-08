@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: employee-consumer-1
+  labels:
+    app: employee-consumer
+  namespace: md
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: employee-consumer
+  template:
+    metadata:
+      labels:
+        app: employee-consumer
+    spec:
+      containers:
+      - name: employee-consumer-container1
+        image: employee-consumer-image
+        ports:
+        - containerPort: 8081
+        imagePullPolicy: IfNotPresent #For local dev, use local docker repo
